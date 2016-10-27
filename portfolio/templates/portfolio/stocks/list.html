@@ -1,0 +1,26 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% for stock in stocks %}
+    <div class="col-sm-3 col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4 class="text-center">{{stock|upper}}</h4>
+          <p class="text-center">
+            <a href="#"><i class="glyphicon glyphicon-pin"></i></a>
+            <a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a>
+          </p>
+          <p class="text-center">
+            <span class="label label-success">0.00</span>
+            <span class="label label-danger">0.00</span>
+          </p>
+          <a class="btn btn-block btn-xs btn-primary" href="{% url 'portfolio:transaction-buy' %}?symbol={{stock}}&cancel_url={% url 'portfolio:stock-list' %}">buy</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
